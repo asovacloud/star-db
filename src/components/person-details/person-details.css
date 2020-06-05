@@ -1,0 +1,50 @@
+.preson-details {
+  flex-direction: row;
+}
+
+.preson-details .preson-image {
+  width: 40%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 0.25rem;
+}
+
+.preson-details .card-body {
+  width: 60%;
+  padding: 0 0 0 16px;
+}
+
+.preson-details .card-body {
+  padding-top: 16px;
+}
+
+.preson-details .card-body h4 {
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+.preson-details .card-body-list {
+  margin: 0;
+  padding: 0 0 0 10px;
+  list-style: none;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.preson-details .card-body-list li {
+  padding: 6px 0;
+}
+
+.preson-details .card-body-list li:first-child {
+  padding-top: 0;
+}
+
+.preson-details .card-body-list .term {
+  padding-right: 6px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.preson-details .card-body-list .term:after {
+  content: ': ';
+}
