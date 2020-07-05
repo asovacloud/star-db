@@ -1,5 +1,5 @@
 
- export default class SwapiService {
+export default class SwapiService {
 
   _apiBase = 'https://swapi.dev/api';
 
@@ -27,8 +27,8 @@
     return res.results;
   }
 
-  getPlanet(id) {
-    return this.getResource(`/planets/${id}`);
+  async getPlanet(id) {
+    return await this.getResource(`/planets/${id}`);
   }
 
   async getAllStarships() {
@@ -41,11 +41,3 @@
   }
 
 }
-
-const swapi = new SwapiService();
-
-swapi.getAllPlanets(3)
-  .then(person => {
-    console.log(person)
-  })
-

@@ -1,35 +1,75 @@
-import React from "react";
+import React, { Component } from "react";
+
+import SwapiService from "../../services/swapi-service";
 
 import "./random-planet.css";
 
-const RandomPlanet = () => {
-  return (
-    <div className="random-planet jumbotron rounded p-2 mb-3 d-flex">
-      <img
-        className="planet-image"
-        src="https://starwars-visualguide.com/assets/img/planets/8.jpg"
-        alt="Planet"
-      />
+export default class RandomPlanet extends Component {
+  swapiService = new SwapiService();
 
-      <div className="random-planet-body">
-        <h4>Planet Name</h4>
-        <ul className="list-group list-group-flush">
-          <li className="list-group-item">
-            <span className="term">Population</span>
-            <span>123123</span>
-          </li>
-          <li className="list-group-item">
-            <span className="term">Rotation Period</span>
-            <span>43</span>
-          </li>
-          <li className="list-group-item">
-            <span className="term">Rotation</span>
-            <span>3</span>
-          </li>
-        </ul>
+  state = {
+    id: null,
+    name: null,
+    population: null,
+    rotationPeriod: null,
+    diameter: null,
+  }
+
+  constructor() {
+    super();
+    this.updatePlanet();
+  }
+
+  updatePlanet() {
+    const id = Math.floor(Math.random() * 25) + 2;
+    this.swapiService
+      .getPlanet(id)
+      .then(planet => {
+        this.setState({
+          id,
+          name: planet.name,
+          population: planet.population,
+          rotationPeriod: planet.rotation_period,
+          diameter: planet.diameter,
+        })
+      });
+  }
+
+  render() {
+    const {
+      id,
+      name,
+      population,
+      rotationPeriod,
+      diameter
+    } = this.state;
+
+    return (
+      <div className="random-planet jumbotron rounded p-2 mb-3 d-flex">
+        <img
+          className="planet-image"
+          src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
+          alt="Planet"
+        />
+  
+        <div className="random-planet-body">
+          <h4>{ name }</h4>
+          <ul className="list-group list-group-flush">
+            <li className="list-group-item">
+              <span className="term">Population</span>
+              <span>{ population }</span>
+            </li>
+            <li className="list-group-item">
+              <span className="term">Rotation Period</span>
+              <span>{ rotationPeriod }</span>
+            </li>
+            <li className="list-group-item">
+              <span className="term">Diameter</span>
+              <span>{ diameter }</span>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
-
-export default RandomPlanet;
