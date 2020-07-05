@@ -1,14 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import './person-details.css';
+import "./person-details.css";
 
-export default class PersonDetails extends Component  {
+export default class PersonDetails extends Component {
   render() {
     return (
       <div className="preson-details p-2 d-flex card">
         <img
           className="preson-image"
           src="https://starwars-visualguide.com/assets/img/placeholder.jpg"
+          alt="Person"
         />
 
         <div className="card-body">
@@ -27,9 +28,8 @@ export default class PersonDetails extends Component  {
               <span>red</span>
             </li>
           </ul>
-
         </div>
       </div>
     );
   }
-};
+}

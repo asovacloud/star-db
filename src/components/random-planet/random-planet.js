@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import './random-planet.css';
+import "./random-planet.css";
 
 const RandomPlanet = () => {
   return (
@@ -8,6 +8,7 @@ const RandomPlanet = () => {
       <img
         className="planet-image"
         src="https://starwars-visualguide.com/assets/img/planets/8.jpg"
+        alt="Planet"
       />
 
       <div className="random-planet-body">
@@ -27,7 +28,6 @@ const RandomPlanet = () => {
           </li>
         </ul>
       </div>
-      
     </div>
   );
 };

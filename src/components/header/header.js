@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react";
 
-import './header.css';
+import "./header.css";
 
 const Header = () => {
   return (
@@ -10,17 +10,17 @@ const Header = () => {
       </h3>
       <ul className="list-inline ml-auto mt-auto mb-0">
         <li className="list-inline-item">
-          <a href="#">People</a>
+          <a href="http://google.com">People</a>
         </li>
         <li className="list-inline-item">
-          <a href="#">Planets</a>
+          <a href="http://google.com">Planets</a>
         </li>
         <li className="list-inline-item">
-          <a href="#">Starship</a>
+          <a href="http://google.com">Starship</a>
         </li>
       </ul>
     </div>
   );
-}
+};
 
 export default Header;
