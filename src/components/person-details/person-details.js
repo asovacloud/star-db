@@ -40,8 +40,6 @@ export default class PersonDetails extends Component {
 
   render() {
 
-    console.log("personId: ", this.props.personId);
-
     if (!this.state.person) {
       return <span>Select a person form a list.</span>
     }
