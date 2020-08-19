@@ -11,7 +11,7 @@ export default class ItemList extends Component {
   };
 
   componentDidMount() {
-    const { getData } = this.props;
+    const { getData} = this.props;
 
     getData()
       .then(itemList => {
@@ -22,15 +22,21 @@ export default class ItemList extends Component {
   }
 
   renderItems(arr) {
-    return arr.map(({id, name}) => (
-      <li
-        className="list-group-item"
-        key={name}
-        onClick={() => this.props.onItemSelected(id)}
-      >
-        {name}
-      </li>
-    ))
+    return arr.map(item => {
+      const { id } = item;
+
+      const label = this.props.renderItem(item);
+      return (
+        <li
+          className="list-group-item"
+          key={id}
+          onClick={() => this.props.onItemSelected(id)}
+        >
+          {label}
+        </li>
+      );
+
+    })
   }
 
   render() {
