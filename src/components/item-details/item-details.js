@@ -1,73 +1,77 @@
 import React, { Component } from "react";
 
-import "./person-details.css";
+import "./item-details.css";
 import SwapiService from "../../services/swapi-service";
 import Spinner from "../spinner";
 
-export default class PersonDetails extends Component {
+export default class ItemDetails extends Component {
 
   swapiService = new SwapiService();
 
   state = {
-    person: null,
+    item: null,
     isSpinner: false,
+    image: null,
   }
 
   componentDidMount() {
-    this.updatePerson();
+    this.updateItem();
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.personId !== prevProps.personId) {
-      this.updatePerson();
+    if (this.props.itemId !== prevProps.itemId) {
+      this.updateItem();
     }
   }
 
-  updatePerson() {
-    const { personId } = this.props;
+  updateItem() {
+    const { itemId, getData, getImageUrl } = this.props;
 
-    if (!personId) return;
+    if (!itemId) return;
 
-    this.swapiService
-      .getPerson(personId)
-      .then(person => {
+    getData(itemId)
+      .then(item => {
         this.setState({
-          person,
-          isSpinner: true
+          item,
+          isSpinner: true,
+          image: getImageUrl(item)
         })
       })
   }
 
   render() {
 
-    if (!this.state.person) {
-      return <span>Select a person form a list.</span>
+    const {
+      item,
+      isSpinner,
+      image,
+    } = this.state;
+
+    if (!item) {
+      return <span>Select an item form a list.</span>
     }
 
-    const { person, isSpinner } = this.state;
-
-    const loadingContent = isSpinner ? <PersonView person={person} /> : <Spinner />
+    const loadingContent = isSpinner ? <PersonView image={image} person={item} /> : <Spinner />
 
     return (
-      <div className="preson-details p-2 d-flex card">{loadingContent}</div>
+      <div className="item-details p-2 d-flex card">{loadingContent}</div>
     );
   }
 }
 
-const PersonView = person => {
+const PersonView = ({person, image}) => {
   const {
-    id,
     name,
     gender,
     birthYear,
     eyeColor
-  } = person.person;
+  } = person;
 
   return (
     <>
       <img
-        className="preson-image"
-        src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
+        className="item-image"
+        src={image}
         alt={name}
       />
 
