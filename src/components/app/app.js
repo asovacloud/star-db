@@ -4,6 +4,8 @@ import Header from '../header';
 import ErrorIndicator from "../error-indicator";
 import SwapiService from "../../services/swapi-service";
 import ItemDetails, { Record } from "../item-details/item-details";
+import ItemList from "../item-list";
+import ErrorBoundry from "../error-boundry";
 import Row from "../row";
 
 import './app.css';
@@ -27,44 +29,31 @@ export default class App extends Component {
     }
 
     const {
-      getPerson,
-      getStarship,
-      getPersonImage,
-      getStarshipImage,
+      getAllPeople,
+      getAllPlanets,
     } = this.swapiService;
 
-    const personDetails = (
-      <ItemDetails
-        itemId={11}
-        getData={getPerson}
-        getImageUrl={getPersonImage}
-      >
-        <Record field="gender" label="Gender" />
-        <Record field="eyeColor" label="Eye Color" />
-      </ItemDetails>
-    );
-
-    const starshipDetails = (
-      <ItemDetails
-        itemId={5}
-        getData={getStarship}
-        getImageUrl={getStarshipImage}>
-          <Record field="model" label="Model" />
-          <Record field="length" label="Length" />
-          <Record field="costInCredits" label="Cost" />
-      </ItemDetails>
-    );
-
     return (
-      <div className="app mt-3">
-        <Header />
-  
-        <Row
-          left={personDetails}
-          right={starshipDetails}
-        />
-  
-      </div>
+      <ErrorBoundry>
+        <div className="stardb-app mt-3">
+          <Header />
+    
+          <ItemList
+            getData={getAllPeople}
+            onItemSelected={() => {}}
+          >
+            { ({name}) => <span>{name}</span> }
+          </ItemList>
+
+          <ItemList
+            getData={getAllPlanets}
+            onItemSelected={() => {}}
+          >
+            { ({name}) => <span>{name}</span> }
+          </ItemList>
+    
+        </div>
+      </ErrorBoundry>
     );
   }
 };
