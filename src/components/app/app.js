@@ -3,7 +3,10 @@ import React, { Component } from 'react'
 import Header from '../header';
 import ErrorIndicator from '../error-indicator';
 import SwapiService from '../../services/swapi-service';
+import DummySwapiService from '../../services/dummy-swapi-service';
 import ErrorBoundry from '../error-boundry';
+
+import { SwapiServiceProvider } from '../swapi-service-context';
 
 import {
   PersonDetails,
@@ -36,18 +39,20 @@ export default class App extends Component {
 
     return (
       <ErrorBoundry>
-        <div className="stardb-app mt-3">
-          <Header />
+        <SwapiServiceProvider value={this.swapiService}>
+          <div className="stardb-app mt-3">
+            <Header />
 
-          <PersonDetails itemId={11} />
-          <PlanetDetails itemId={5} />
-          <StarshipDetails itemId={5} />
-    
-          <PersonList />
-          <StarshipList />
-          <PlanetList />
+            <PersonDetails itemId={11} />
+            <PlanetDetails itemId={5} />
+            <StarshipDetails itemId={5} />
+      
+            <PersonList />
+            <StarshipList />
+            <PlanetList />
 
-        </div>
+          </div>
+        </SwapiServiceProvider>
       </ErrorBoundry>
     );
   }
