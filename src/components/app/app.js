@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import Header from '../header';
 import ErrorIndicator from '../error-indicator';
 import SwapiService from '../../services/swapi-service';
-import DummySwapiService from '../../services/dummy-swapi-service';
 import ErrorBoundry from '../error-boundry';
 
 import { SwapiServiceProvider } from '../swapi-service-context';
