@@ -3,10 +3,10 @@
 }
 
 .item-details .item-image {
-  width: 40%;
-  height: 200px;
-  object-fit: cover;
+  width: 35%;
+  height: auto;
   border-radius: 0.25rem;
+  margin-bottom: auto;
 }
 
 .item-details .card-body {

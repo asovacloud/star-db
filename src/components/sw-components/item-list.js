@@ -14,6 +14,7 @@ const withChildFunction = (Wrapped, fn) => {
 
 const renderName = ({ name }) => <span>{name}</span>;
 const renderModelAndName = ({ model, name }) => <span>{name} ({model})</span>
+const renderHairAndName = ({ hairColor, name }) => <span>{name} ({hairColor})</span>
 
 const mapPersonMethodsToProps = (swapiService) => {
   return {
@@ -35,7 +36,7 @@ const mapStarshipMethodsToProps = (swapiService) => {
 
 const PersonList = withSwapiService(
                     withData(
-                      withChildFunction(ItemList, renderName)
+                      withChildFunction(ItemList, renderHairAndName)
                     ),
                     mapPersonMethodsToProps
                   );
