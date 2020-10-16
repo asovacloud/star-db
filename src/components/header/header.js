@@ -9,13 +9,13 @@ const Header = ({ onServiceChange }) => {
       <h3 className="m-0 logo"><Link to="/">Star DB</Link></h3>
       <ul className="list-inline ml-auto mt-auto mb-auto mb-0">
         <li className="list-inline-item">
-          <Link to="/people">People</Link>
+          <Link to="/people/">People</Link>
         </li>
         <li className="list-inline-item">
-          <Link to="/planets">Planets</Link>
+          <Link to="/planets/">Planets</Link>
         </li>
         <li className="list-inline-item">
-          <Link to="/starships">Starships</Link>
+          <Link to="/starships/">Starships</Link>
         </li>
       </ul>
       <button
