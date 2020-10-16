@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Header from '../header';
 import ErrorIndicator from '../error-indicator';
@@ -11,7 +11,9 @@ import SwapiServiceContext from '../swapi-service-context';
 import {
   PeoplePage,
   PlanetsPage,
-  StarshipsPage
+  StarshipsPage,
+  SecretPage,
+  LoginPage
 } from '../pages';
 import {
   StarshipDetails
@@ -23,12 +25,18 @@ export default class App extends Component {
 
   state = {
     hasError: false,
-    swapiService: new SwapiService()
+    swapiService: new SwapiService(),
+    isLoggedIn: false
   };
 
   componentDidCatch() {
     this.setState({ hasError: true })
   }
+
+  onLogin = () => {
+    this.setState({ isLoggedIn: true });
+  };
+
 
   onServiceChange = () => {
     this.setState(({ swapiService }) => {
@@ -46,6 +54,8 @@ export default class App extends Component {
       return <ErrorIndicator />
     }
 
+    const { isLoggedIn } = this.state;
+
     return (
       <ErrorBoundry>
         <SwapiServiceContext.Provider value={this.state.swapiService}>
@@ -54,29 +64,43 @@ export default class App extends Component {
               <Header onServiceChange={this.onServiceChange} />
               <RandomPlanet />
 
-              <Route  path='/'
-                      render={() => <h1>Welcom to my App, bro.</h1>}
-                      exact />
-              <Route  path='/people'
-                      render={() => <h2>People</h2>}
-                      exact
-                      />
-              <Route  path='/people/:id?'
-                      render={({match}) => {
-                        const { id } = match.params;
-                        return <PeoplePage itemId={id} />
-                      }}
-                      />
-              <Route path='/planets' component={ PlanetsPage } />
-              <Route  path='/starships'
-                      component={ StarshipsPage }
-                      exact />
-              <Route  path='/starships/:id'
-                      render={({match}) => {
-                        const { id } = match.params;
-                        return <StarshipDetails itemId={id} />
-                      }} />
+              <Switch>
+                <Route  path='/'
+                        render={() => <h1>Welcom to my App, bro.</h1>}
+                        exact />
+                <Route  path='/people/:id?'
+                        render={({match}) => {
+                          const { id } = match.params;
+                          return <PeoplePage itemId={id} />
+                        }}
+                        />
+                <Route path='/planets' component={ PlanetsPage } />
+                <Route  path='/starships'
+                        component={ StarshipsPage }
+                        exact />
+                <Route  path='/starships/:id'
+                        render={({match}) => {
+                          const { id } = match.params;
+                          return <StarshipDetails itemId={id} />
+                        }} />
 
+                <Route  path='/login'
+                        render={() => (
+                          <LoginPage
+                            isLoggedIn={ isLoggedIn }
+                            onLogin={ this.onLogin }
+                          />
+                        )}
+                />
+                <Route path='/secret'
+                        render={() => (
+                          <SecretPage
+                            isLoggedIn={ isLoggedIn }
+                          />
+                        )}
+                />
+                <Route render={() => <h2>Page not found.</h2>} />
+              </Switch>
             </div>
           </Router>
           
