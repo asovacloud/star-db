@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Header from '../header';
 import ErrorIndicator from '../error-indicator';
@@ -12,6 +13,9 @@ import {
   PlanetsPage,
   StarshipsPage
 } from '../pages';
+import {
+  StarshipDetails
+} from '../sw-components';
 
 import './app.css';
 
@@ -45,16 +49,32 @@ export default class App extends Component {
     return (
       <ErrorBoundry>
         <SwapiServiceContext.Provider value={this.state.swapiService}>
-          <div className="stardb-app mt-3">
-            <Header onServiceChange={this.onServiceChange} />
+          <Router>
+            <div className="stardb-app mt-3">
+              <Header onServiceChange={this.onServiceChange} />
+              <RandomPlanet />
 
-            <RandomPlanet />
+              <Route  path='/'
+                      render={() => <h1>Welcom to my App, bro.</h1>}
+                      exact />
+              <Route  path='/people'
+                      render={() => <h2>People</h2>}
+                      exact
+                      />
+              <Route path='/people' component={ PeoplePage } />
+              <Route path='/planets' component={ PlanetsPage } />
+              <Route  path='/starships'
+                      component={ StarshipsPage }
+                      exact />
+              <Route  path='/starships/:id'
+                      render={({match}) => {
+                        const { id } = match.params;
+                        return <StarshipDetails itemId={id} />
+                      }} />
 
-            <PeoplePage />
-            <PlanetsPage />
-            <StarshipsPage />
-
-          </div>
+            </div>
+          </Router>
+          
         </SwapiServiceContext.Provider>
       </ErrorBoundry>
     );
