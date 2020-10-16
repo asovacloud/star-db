@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/asovacloud/star-db.git/static/css/main.957b5db9.chunk.css",
+    "main.js": "/asovacloud/star-db.git/static/js/main.1cb932a1.chunk.js",
+    "main.js.map": "/asovacloud/star-db.git/static/js/main.1cb932a1.chunk.js.map",
+    "runtime-main.js": "/asovacloud/star-db.git/static/js/runtime-main.4c74b010.js",
+    "runtime-main.js.map": "/asovacloud/star-db.git/static/js/runtime-main.4c74b010.js.map",
+    "static/js/2.ba2f3a10.chunk.js": "/asovacloud/star-db.git/static/js/2.ba2f3a10.chunk.js",
+    "static/js/2.ba2f3a10.chunk.js.map": "/asovacloud/star-db.git/static/js/2.ba2f3a10.chunk.js.map",
+    "index.html": "/asovacloud/star-db.git/index.html",
+    "precache-manifest.dfffbf1519af88c0a5d0271d5e7fae18.js": "/asovacloud/star-db.git/precache-manifest.dfffbf1519af88c0a5d0271d5e7fae18.js",
+    "service-worker.js": "/asovacloud/star-db.git/service-worker.js",
+    "static/css/main.957b5db9.chunk.css.map": "/asovacloud/star-db.git/static/css/main.957b5db9.chunk.css.map",
+    "static/js/2.ba2f3a10.chunk.js.LICENSE.txt": "/asovacloud/star-db.git/static/js/2.ba2f3a10.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4c74b010.js",
+    "static/js/2.ba2f3a10.chunk.js",
+    "static/css/main.957b5db9.chunk.css",
+    "static/js/main.1cb932a1.chunk.js"
+  ]
+}
