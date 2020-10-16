@@ -18,7 +18,6 @@ import './app.css';
 export default class App extends Component {
 
   state = {
-    showRandomPlanet: true,
     hasError: false,
     swapiService: new SwapiService()
   };
@@ -39,9 +38,6 @@ export default class App extends Component {
 
   render() {
 
-    const planet = this.state.showRandomPlanet ?
-      <RandomPlanet /> : null;
-
     if (this.state.hasError) {
       return <ErrorIndicator />
     }
@@ -52,7 +48,7 @@ export default class App extends Component {
           <div className="stardb-app mt-3">
             <Header onServiceChange={this.onServiceChange} />
 
-            { planet }
+            <RandomPlanet />
 
             <PeoplePage />
             <PlanetsPage />
